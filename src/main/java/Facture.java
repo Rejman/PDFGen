@@ -29,10 +29,14 @@ public class Facture {
 
     private String title;
     private PositonOfInvoice[] services;
+    private Person buyer;
+    private Person dealer;
 
-    public Facture(String title, PositonOfInvoice[] services) {
+    public Facture(String title, Person dealer, Person buyer, PositonOfInvoice[] services) {
         this.title = title;
         this.services = services;
+        this.buyer = buyer;
+        this.dealer = dealer;
     }
 
     public void createDocument(String path) throws FileNotFoundException, DocumentException {
@@ -45,10 +49,20 @@ public class Facture {
         Paragraph title = new Paragraph(this.title, helveticaBold16);
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
+        //dodanie sprzedawcy
+        document.add(new Paragraph("From:", helveticaBold12));
+        document.add(new Paragraph(dealer.getName(),helvetica12));
+        document.add(new Paragraph(dealer.getAddress(),helvetica12));
+        document.add(new Paragraph("nip: "+dealer.getNip(),helvetica12));
+        //dodanie kupca
+        document.add(new Paragraph("To:", helveticaBold12));
+        document.add(new Paragraph(buyer.getName(),helvetica12));
+        document.add(new Paragraph(buyer.getAddress(),helvetica12));
+        document.add(new Paragraph("nip: "+buyer.getNip(),helvetica12));
         //dodanie tabelki z usuługami i produktami
         document.add(getTableOfInvoicePositons());
         //dodanie TotalPrice
-        document.add(new Paragraph("Total Price: "+getTotalPrice()+" zl", helvetica16));
+        document.add(new Paragraph("Total Price: "+getTotalPrice()+" zł", helvetica16));
 
 
         document.close();
