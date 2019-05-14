@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class Facture {
+public class Invoice {
 
     private static BaseFont helvetica;
     static {
@@ -34,7 +34,7 @@ public class Facture {
     private Person buyer;
     private Person dealer;
 
-    public Facture(String title, Person dealer, Person buyer, PositonOfInvoice[] services) {
+    public Invoice(String title, Person dealer, Person buyer, PositonOfInvoice[] services) {
         this.title = title;
         this.services = services;
         this.buyer = buyer;
