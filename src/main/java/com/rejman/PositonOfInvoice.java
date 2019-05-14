@@ -1,3 +1,5 @@
+package com.rejman;
+
 public class PositonOfInvoice {
     private String name;
     private double price;
